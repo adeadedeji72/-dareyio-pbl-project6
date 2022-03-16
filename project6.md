@@ -177,3 +177,53 @@ sudo systemctl start php-fpm
 sudo systemctl enable php-fpm
 setsebool -P httpd_execmem 1
 ~~~
+
+Restart Apache
+~~~
+sudo systemctl restart httpd
+~~~
+Download wordpress and copy wordpress to var/www/html
+~~~
+  mkdir wordpress
+  cd   wordpress
+  sudo wget http://wordpress.org/latest.tar.gz
+  sudo tar xzvf latest.tar.gz
+  sudo rm -rf latest.tar.gz
+  cp wordpress/wp-config-sample.php wordpress/wp-config.php
+  cp -R wordpress /var/www/html/
+~~~
+
+Configure SELinux Policies
+~~~
+  sudo chown -R apache:apache /var/www/html/wordpress
+  sudo chcon -t httpd_sys_rw_content_t /var/www/html/wordpress -R
+  sudo setsebool -P httpd_can_network_connect=1
+~~~
+
+### **TASK FIVE** ###
+ Install MySQL on your DB Server EC2
+~~~
+sudo yum update
+sudo yum install mysql-server
+~~~
+
+Verify that the service is up and running by using sudo systemctl status mysqld, if it is not running, restart the service and enable it so it will be running even after reboot:
+~~~
+sudo systemctl restart mysqld
+sudo systemctl enable mysqld
+~~~
+
+Configure DB to work with WordPress
+~~~
+sudo mysql
+CREATE DATABASE wordpress;
+CREATE USER `dbuser`@`<Web-Server-Private-IP-Address>` IDENTIFIED BY 'dbuserpass';
+GRANT ALL ON wordpress.* TO 'dbuser'@'<Web-Server-Private-IP-Address>';
+FLUSH PRIVILEGES;
+SHOW DATABASES;
+exit
+~~~
+
+Edit DB Server instance to allow inbound traffic on port 3306 for database connection from the Web Server IP
+
+![](connect-3306.jpg)
