@@ -143,3 +143,37 @@ sudo vi /etc/fstab
 ~~~
 edit as shown below:
 ![image](fstab.jpg)
+
+Test the configuration and reload the daemon
+~~~
+ sudo mount -a
+ sudo systemctl daemon-reload
+~~~
+
+REPEAT above for the second **‘DB Server’**
+Repeat the same steps as for the Web Server, but instead of *apps-lv* create *db-lv* and mount it to */db* directory instead of */var/www/html/*.
+
+### **TASK FOUR** ###
+Install wget, Apache and it’s dependencies
+~~~
+sudo yum -y install wget httpd php php-mysqlnd php-fpm php-json
+~~~
+
+Start Apache
+~~~
+sudo systemctl enable httpd
+sudo systemctl start httpd
+~~~
+
+Install PHP and it’s depemdencies
+~~~
+sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo yum install yum-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+sudo yum module list php
+sudo yum module reset php
+sudo yum module enable php:remi-7.4
+sudo yum install php php-opcache php-gd php-curl php-mysqlnd
+sudo systemctl start php-fpm
+sudo systemctl enable php-fpm
+setsebool -P httpd_execmem 1
+~~~
