@@ -66,3 +66,26 @@ Confirm the physical volumes
 ~~~
 sudo pvs
 ~~~
+
+Use *vgcreate* utility to add all 3 PVs to a volume group (VG). Name the VG **webdata-vg**
+~~~
+sudo vgcreate webdata-vg /dev/xvdh1 /dev/xvdg1 /dev/xvdf1
+~~~
+Check the volume groups
+~~~
+sudo vgs
+~~~
+![](gvs.jpg)
+
+Use *lvcreate* utility to create 2 logical volumes. **apps-lv** (Use half of the PV size), and **logs-lv** Use the remaining space of the PV size. NOTE: apps-lv will be used to store data for the Website while, logs-lv will be used to store data for logs
+~~~
+sudo lvcreate -n apps-lv -L 14G webdata-vg
+sudo lvcreate -n logs-lv -L 14G webdata-vg
+~~~
+
+Confirm the *Logical Volumes*
+~~~
+sudo lvs
+~~~
+
+![image](lvs.jgp)
