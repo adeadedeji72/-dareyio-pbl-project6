@@ -48,3 +48,21 @@ sudo lsblk
 ~~~
 ![](lsblk-second.jpg)
 
+Install *lvm2*
+~~~
+sudo yum install lvm2
+~~~
+Run lvmdiskscan to check available partitions
+~~~
+sudo lvmdiskscan
+~~~
+Use pvcreate to mark each of 3 disks as physical volumes (PVs) to be used by LVM
+~~~
+sudo pvcreate /dev/xvdf1
+sudo pvcreate /dev/xvdg1
+sudo pvcreate /dev/xvdh1
+~~~
+Confirm the physical volumes
+~~~
+sudo pvs
+~~~
