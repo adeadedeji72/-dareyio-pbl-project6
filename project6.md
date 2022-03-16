@@ -29,4 +29,22 @@ To attach a volume to a server
 - [x] Select the instance you want to attach the volume to
 - [x] Click on Attach
 
+Confirm the attached volumes with
+~~~
+sudo lsblk
+~~~
+![](lsblk-initial.jpg)
+
+Create a partition on each of the volume attached 
+~~~
+sudo gdisk /dev/xvdf
+sudo gdisk /dev/xvdg
+sudo gdisk /dev/xvdh
+~~~
+
+Check again
+~~~
+sudo lsblk
+~~~
+![](lsblk-second.jpg)
 
