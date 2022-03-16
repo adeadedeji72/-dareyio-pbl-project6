@@ -88,4 +88,17 @@ Confirm the *Logical Volumes*
 sudo lvs
 ~~~
 
-![image](lvs.jgp)
+![image](lvs.jpg)
+
+Verify all to view view complete setup - VG, PV, and LV
+~~~
+sudo vgdisplay -v
+sudo lsblk
+~~~
+![](view-all.jpg)
+
+Use *mkfs.ext4* to format the logical volumes with *ext4* filesystem
+~~~
+sudo mkfs -t ext4 /dev/webdata-vg/apps-lv
+sudo mkfs -t ext4 /dev/webdata-vg/logs-lv
+~~~
