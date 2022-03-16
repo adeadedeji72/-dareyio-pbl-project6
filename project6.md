@@ -233,3 +233,9 @@ Edit Web Server instance to allow inbound traffic on port 80 for database connec
 ![](webtraffic.jpg)
 
 
+Edit wp-config.php file in the web server for connection to the database 
+~~~
+sudo vi /var/www/html/wordpress/wp-config.php
+~~~
+
+![](wp-config.jpg)
