@@ -7,3 +7,14 @@ WordPress is a free and open-source content management system written in PHP and
 Launch two Red Hat Linux EC2 instances
 
 ![image](red-hat-ec2.jpg)
+
+Update and upgrade the two servers
+~~~
+sudo yum update -y && sudo yum upgrade -y
+~~~
+
+### **TASK TWO** ###
+Create and attach three EBS (**ELASTIC BLOCK STORE**) to each of the servers. These will be used to create LVs (**LOGICAL VOLUMES**) on the servers.
+Create EBS
+
+[image](ebs-vol.jpg)
