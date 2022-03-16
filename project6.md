@@ -247,6 +247,6 @@ From a browser, go to http://<web-server-public-ip>/wordpress
  
  You should get some like:
  
- ![](wp_g1.jpg)
+ ![](wp_pg1.jpg)
  
  ![](wp_pg2.jpg)
