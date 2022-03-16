@@ -23,10 +23,10 @@ Ensure the volumes and your EC2 instances are on the **same availability zone**.
 Attach the volumes to each server, three per server.
 
 To attach a volume to a server
-- [] Select the volume to be attached on the Volumes page
-- [] Click on Action tab
-- [] Click on Attach volume
-- [] Select the instance you want to attach the volume to
-- [] Click on Attach
+- [x] Select the volume to be attached on the Volumes page
+- [x] Click on Action tab
+- [x] Click on Attach volume
+- [x] Select the instance you want to attach the volume to
+- [x] Click on Attach
 
 
