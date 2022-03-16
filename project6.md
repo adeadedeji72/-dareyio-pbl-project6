@@ -102,3 +102,44 @@ Use *mkfs.ext4* to format the logical volumes with *ext4* filesystem
 sudo mkfs -t ext4 /dev/webdata-vg/apps-lv
 sudo mkfs -t ext4 /dev/webdata-vg/logs-lv
 ~~~
+
+Create /var/www/html directory to store website files
+~~~
+sudo mkdir -p /var/www/html
+~~~
+Create /home/recovery/logs to store backup of log data
+~~~
+sudo mkdir -p /home/recovery/logs
+~~~
+Mount /var/www/html on apps-lv logical volume
+~~~
+sudo mount /dev/webdata-vg/apps-lv /var/www/html/
+~~~
+Use rsync utility to backup all the files in the log directory /var/log into /home/recovery/logs (This is required before mounting the file system)
+~~~
+sudo rsync -av /var/log/. /home/recovery/logs/
+~~~
+Mount /var/log on logs-lv logical volume. (Note that all the existing data on /var/log will be deleted. That is why step 15 above is very
+important)
+~~~
+sudo mount /dev/webdata-vg/logs-lv /var/log
+~~~
+Restore log files back into /var/log directory
+~~~
+sudo rsync -av /home/recovery/logs/. /var/log
+~~~
+
+### **TASK THREE** ###
+UPDATE THE `/ETC/FSTAB` FILE
+
+Use this command to to obtain the UUID of each of the LVs (logical volume)
+~~~
+sudo blkid
+~~~
+
+Edit /etc/fstab
+~~~
+sudo vi /etc/fstab
+~~~
+edit as shown below:
+![image](fstab.jpg)
