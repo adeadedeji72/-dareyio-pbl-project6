@@ -227,3 +227,9 @@ exit
 Edit DB Server instance to allow inbound traffic on port 3306 for database connection from the Web Server IP
 
 ![](connect-3306.jpg)
+
+Edit Web Server instance to allow inbound traffic on port 80 for database connection from anywhere
+
+![](webtraffic.jpg)
+
+
